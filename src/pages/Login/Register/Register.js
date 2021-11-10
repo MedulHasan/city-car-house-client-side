@@ -7,8 +7,8 @@ import { useAlert } from '../../../context/AlertMessage';
 
 const Register = () => {
     const history = useHistory()
-    const { registerUser, isLoading } = useAuth();
     const [loginData, setLoginData] = useState({});
+    const { registerUser, isLoading } = useAuth();
     const { setAlertSuccessMessage } = useAlert();
 
     const handleOnChange = (e) => {

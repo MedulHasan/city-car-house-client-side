@@ -25,6 +25,7 @@ const Navigation = () => {
           {
             user.email ? (
               <NavLink to="/" style={navigationBar}>
+                <Link to="/dashboard" style={navigationBar}><Button color="inherit" >Dashboard</Button></Link>
                 <Button onClick={logout} style={navigationBar} color="inherit">Logout</Button>
                 <Button style={navigationBar} color="inherit">{user.displayName}</Button>
               </NavLink>

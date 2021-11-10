@@ -2,8 +2,10 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import AlertMessage from './context/AlertMessage';
 import AuthProvider from './context/AuthProvider';
+import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login/Login';
+import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Register from './pages/Login/Register/Register';
 
 function App() {
@@ -27,6 +29,9 @@ function App() {
               <Route path="/register">
                 <Register />
               </Route>
+              <PrivateRoute path="/dashboard">
+                <Dashboard />
+              </PrivateRoute>
             </Switch>
           </BrowserRouter>
         </AlertMessage>

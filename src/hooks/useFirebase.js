@@ -85,11 +85,11 @@ const useFirebase = () => {
         return () => unsubscribe;
     }, [])
 
-    /* useEffect(() => {
+    useEffect(() => {
         fetch(`http://localhost:8888/users/${user.email}`)
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
-    }, [user.email]) */
+    }, [user.email])
 
     const logout = () => {
         signOut(auth).then(() => {
