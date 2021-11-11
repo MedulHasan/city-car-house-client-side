@@ -92,6 +92,7 @@ const AddAProduct = () => {
     };
     return (
         <Box sx={{ ml: '50px' }}>
+            <Typography sx={{ textAlign: 'center' }} variant="h3">Add A New Car Here</Typography>
             {alertSuccessMessage &&
                 <Alert
                     severity="success"

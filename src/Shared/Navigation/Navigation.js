@@ -18,23 +18,26 @@ const Navigation = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            City-Car-House
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: '28px' }}>
+            CITY-CAR-HOUSE
           </Typography>
-          <Link to="/" style={navigationBar}><Button color="inherit" >Home</Button></Link>
-          {
-            user.email ? (
-              <NavLink to="/" style={navigationBar}>
-                <Link to="/dashboard" style={navigationBar}><Button color="inherit" >Dashboard</Button></Link>
-                <Button onClick={logout} style={navigationBar} color="inherit">Logout</Button>
-                <Button style={navigationBar} color="inherit">{user.displayName}</Button>
-              </NavLink>
-            ) : (
-              <NavLink to="/login" style={navigationBar}>
-                <Button color="inherit">Login</Button>
-              </NavLink>
-            )
-          }
+          <Box>
+            <Link to="/" style={navigationBar}><Button color="inherit" >Home</Button></Link>
+            <Link to="/exploreCar" style={navigationBar}><Button color="inherit" >Explore Car</Button></Link>
+            {
+              user.email ? (
+                <NavLink to="/" style={navigationBar}>
+                  <Link to="/dashboard" style={navigationBar}><Button color="inherit" >Dashboard</Button></Link>
+                  <Button onClick={logout} style={navigationBar} color="inherit">Logout</Button>
+                  <Button style={navigationBar} color="inherit">{user.displayName}</Button>
+                </NavLink>
+              ) : (
+                <NavLink to="/login" style={navigationBar}>
+                  <Button color="inherit">Login</Button>
+                </NavLink>
+              )
+            }
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

@@ -22,6 +22,7 @@ import useAuth from '../../../hooks/useAuth';
 import {
     Switch,
     Route,
+    Redirect,
     Link,
     useRouteMatch
 } from "react-router-dom";
@@ -68,7 +69,7 @@ function Dashboard(props) {
                         <Button sx={{ color: '#fff' }}>Home</Button>
                     </ListItem>
                 </Link>
-                <Link id="RouterNavLink" to={`${url}`} style={{
+                {/* <Link id="RouterNavLink" to={`${url}`} style={{
                     color: '#fff',
                     textDecoration: 'none',
                     display: 'flex',
@@ -78,7 +79,7 @@ function Dashboard(props) {
                         <AiFillDashboard style={{ fontSize: '25px' }} />
                         <Button sx={{ color: '#fff' }}>Dashboard</Button>
                     </ListItem>
-                </Link>
+                </Link> */}
                 {
                     admin &&
                     <Box>
@@ -231,7 +232,10 @@ function Dashboard(props) {
             >
                 <Switch>
                     <Route exact path={path}>
-                        <DashboardHome />
+                        {/* <DashboardHome /> */}
+                        <Redirect to={{
+                            pathname: `${path}/${admin ? 'addAProduct' : 'payment'}`
+                        }} />
                     </Route>
                     <AdminRoute path={`${path}/manageAllOrders`}>
                         <ManageAllOrder />

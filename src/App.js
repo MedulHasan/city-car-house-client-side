@@ -3,10 +3,12 @@ import './App.css';
 import AlertMessage from './context/AlertMessage';
 import AuthProvider from './context/AuthProvider';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
+import ExploreCar from './pages/ExploreCar/ExploreCar';
 import Home from './pages/Home/Home/Home';
 import Login from './pages/Login/Login/Login';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Register from './pages/Login/Register/Register';
+import Navigation from './Shared/Navigation/Navigation';
 
 function App() {
   return (
@@ -22,6 +24,10 @@ function App() {
               </Route>
               <Route path="/home">
                 <Home />
+              </Route>
+              <Route path="/exploreCar">
+                <Navigation />
+                <ExploreCar />
               </Route>
               <Route path="/login">
                 <Login />
