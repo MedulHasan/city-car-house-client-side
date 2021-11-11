@@ -2,6 +2,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import AlertMessage from './context/AlertMessage';
 import AuthProvider from './context/AuthProvider';
+import CarDetails from './pages/CarDetails/CarDetails/CarDetails';
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 import ExploreCar from './pages/ExploreCar/ExploreCar';
 import Home from './pages/Home/Home/Home';
@@ -37,6 +38,9 @@ function App() {
               </Route>
               <PrivateRoute path="/dashboard">
                 <Dashboard />
+              </PrivateRoute>
+              <PrivateRoute path="/carDetails">
+                <CarDetails />
               </PrivateRoute>
             </Switch>
           </BrowserRouter>

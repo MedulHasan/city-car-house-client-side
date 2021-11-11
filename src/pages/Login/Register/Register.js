@@ -25,7 +25,7 @@ const Register = () => {
     return (
         <Container maxWidth="xl" sx={{ mt: 2 }}>
             <Grid container spacing={3}>
-                <Grid item xs={12} md={6} sx={{ mt: 12, textAlign: 'center' }}>
+                <Grid item xs={12} sm={6} sx={{ mt: 12, textAlign: 'center' }}>
                     <Typography variant="button" display="block" gutterBottom>
                         Register
                     </Typography>

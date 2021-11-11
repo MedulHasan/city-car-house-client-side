@@ -7,6 +7,7 @@ import { MdBatteryCharging80 } from 'react-icons/md';
 import { IoMdClock } from 'react-icons/io';
 import { SiYamahamotorcorporation } from 'react-icons/si';
 import { AiFillCar } from 'react-icons/ai';
+import { useHistory } from 'react-router';
 
 
 const spanItem = {
@@ -21,8 +22,16 @@ const innerGridStyle = {
 }
 
 const SingleCar = ({ bestCar }) => {
+    const history = useHistory();
+
+    const handleOrder = () => {
+        history.push({
+            pathname: '/carDetails',
+            state: { from: bestCar }
+        });
+    }
     return (
-        <Box key={bestCar._id}>
+        <Box>
             <Box style={{
                 display: 'flex',
                 background: '#F4F4F4',
@@ -33,15 +42,18 @@ const SingleCar = ({ bestCar }) => {
             }}>
                 <img style={{ width: '80px' }} src={bestCar.carLogo} alt="" />
                 <Typography variant="h5" sx={{ fontWeight: 900, fontSize: '28px' }}>{bestCar.carBrand}</Typography>
-                <Typography variant="h5" sx={{ fontWeight: 400, fontSize: '28px', color: '#414141' }}>{bestCar.carQuote}</Typography>
+                <Box>
+                    <Typography variant="h5" sx={{ fontWeight: 400, fontSize: '28px', color: '#414141' }}>{bestCar.carQuote}</Typography>
+                    <Typography variant="h5" sx={{ fontWeight: 600, fontSize: '28px', color: '#FFCF00', }}>Price: $ {bestCar.price}</Typography>
+                </Box>
             </Box>
             <Grid container style={{
                 padding: '15px 12%',
             }}>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} sm={5}>
                     <img width="400px" src={bestCar.carImage} alt="" />
                 </Grid>
-                <Grid item xs={12} md={7}>
+                <Grid item xs={12} sm={7}>
                     <Typography style={{ fontWeight: 900, fontSize: '28px' }}>{bestCar.carModel}</Typography>
                     <hr style={{ width: '50px', textAlign: 'left', marginLeft: '0px', height: '1px', background: '#000' }} />
                     <Grid container spacing={6}>
@@ -88,18 +100,20 @@ const SingleCar = ({ bestCar }) => {
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Button sx={{
-                        mt: 5,
-                        ml: 5,
-                        background: '#2CC0C7',
-                        '&:hover': {
-                            background: "#000",
-                        },
-                        color: '#fff',
-                        border: 'none',
-                        padding: 0,
-                        borderRadius: 0,
-                    }}
+                    <Button
+                        onClick={handleOrder}
+                        sx={{
+                            mt: 5,
+                            ml: 5,
+                            background: '#2CC0C7',
+                            '&:hover': {
+                                background: "#000",
+                            },
+                            color: '#fff',
+                            border: 'none',
+                            padding: 0,
+                            borderRadius: 0,
+                        }}
                         variant="contained">
                         <span style={{ padding: '10px 15px' }}>Order Now</span>
                         <AiFillCar style={{

@@ -79,7 +79,6 @@ const AddAProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.insertedId) {
                     setAlertSuccessMessage(true);
                 } else {
@@ -92,7 +91,6 @@ const AddAProduct = () => {
     };
     return (
         <Box sx={{ ml: '50px' }}>
-            <Typography sx={{ textAlign: 'center' }} variant="h3">Add A New Car Here</Typography>
             {alertSuccessMessage &&
                 <Alert
                     severity="success"
@@ -133,9 +131,10 @@ const AddAProduct = () => {
                         <CloseIcon />
                     </IconButton>
                 </Alert>}
+            <Typography sx={{ textAlign: 'center' }} variant="h3">Add A New Car Here</Typography>
             <form onSubmit={handleAddProductSubmit}>
                 <Grid container style={{ height: '50vh' }} sx={{ ml: '100px', mt: '50px' }}>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <TextField style={styleTextField} value={selectCar} onBlur={handleCarInfo} onChange={handleChange} select type="text" name="carBrand" label="Car Brand" variant="standard" >
                             {carBrand.map((option) => (
                                 <MenuItem key={option.value} value={option.value}>
@@ -154,8 +153,12 @@ const AddAProduct = () => {
                         <br />
                         <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="enginePower" label="Engine Power (hp)" variant="standard" />
                         <br />
+                        <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="person" label="Person" variant="standard" />
+                        <br />
+                        <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="luggage" label="Luggage" variant="standard" />
+                        <br />
                     </Grid>
-                    <Grid item xs={12} md={6}>
+                    <Grid item xs={12} sm={6}>
                         <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="battery" label="Battery (kw/h)" variant="standard" />
                         <br />
                         <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="speedUpTo100" label="Speed up to 100 km/s" variant="standard" />
@@ -163,6 +166,10 @@ const AddAProduct = () => {
                         <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="electricMotor" label="Electric motor (kw)" variant="standard" />
                         <br />
                         <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="carImage" label="Car Image (url)" variant="standard" />
+                        <br />
+                        <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="price" label="Price in $" variant="standard" />
+                        <br />
+                        <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="door" label="Door" variant="standard" />
                         <br />
                         <Button sx={{ mt: 2 }} type="submit" variant="outlined">Add A Car</Button>
                     </Grid>
