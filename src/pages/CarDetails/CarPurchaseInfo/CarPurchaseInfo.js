@@ -8,11 +8,12 @@ const styleTextField = {
 
 const CarPurchaseInfo = ({ carDetails }) => {
     const { user } = useAuth();
-    const initialInfo = { patientName: user.displayName, email: user.email, phone: '' }
+    const initialInfo = { name: user.displayName, email: user.email, phone: '' }
     const [addOrder, setAddOrder] = useState(initialInfo);
 
     const handleCarInfo = (e) => {
         let newData = { ...addOrder };
+        newData.carId = carDetails._id;
         newData[e.target.name] = e.target.value;
         setAddOrder(newData)
     };
@@ -59,13 +60,13 @@ const CarPurchaseInfo = ({ carDetails }) => {
                     <br />
                     <TextField style={styleTextField} onBlur={handleCarInfo} type="email" name="email" defaultValue={user.email} label="Email Address" variant="standard" />
                     <br />
-                    <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="phone" label="Phone Number" variant="standard" />
+                    <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="phone" label="Phone Number" variant="standard" required />
                     <br />
-                    <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="address" label="Address" variant="standard" />
+                    <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="address" label="Address" variant="standard" required />
                     <br />
                     <TextField style={styleTextField} onBlur={handleCarInfo} type="text" name="price" defaultValue={carDetails.price} label="Price in $" variant="standard" />
                     <br />
-                    <TextField style={styleTextField} onBlur={handleCarInfo} type="date" name="date" label="" variant="standard" />
+                    <TextField style={styleTextField} onBlur={handleCarInfo} type="date" name="date" label="" variant="standard" required />
                     <br />
                     <Button sx={{ mt: 2 }} type="submit" variant="outlined">Place Order</Button>
                 </form>
