@@ -186,7 +186,7 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex', background: '#F4FDFB', height: '100vh' }}>
+        <Box sx={{ display: 'flex', background: '#F4FDFB', height: '100%' }}>
             <MenuIcon
                 color="inherit"
                 aria-label="open drawer"
@@ -234,7 +234,7 @@ function Dashboard(props) {
                     <Route exact path={path}>
                         {/* <DashboardHome /> */}
                         <Redirect to={{
-                            pathname: `${path}/${admin ? 'addAProduct' : 'payment'}`
+                            pathname: `${path}/${admin ? 'addAProduct' : 'myOrders'}`
                         }} />
                     </Route>
                     <AdminRoute path={`${path}/manageAllOrders`}>

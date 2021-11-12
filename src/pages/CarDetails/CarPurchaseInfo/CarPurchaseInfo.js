@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Typography, Box, TextField, Button } from '@mui/material';
+import { Typography, Box, TextField, Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 
 const styleTextField = {
@@ -13,7 +13,8 @@ const CarPurchaseInfo = ({ carDetails }) => {
 
     const handleCarInfo = (e) => {
         let newData = { ...addOrder };
-        newData.carId = carDetails._id;
+        newData.carModel = carDetails.carModel;
+        newData.price = carDetails.price;
         newData[e.target.name] = e.target.value;
         setAddOrder(newData)
     };

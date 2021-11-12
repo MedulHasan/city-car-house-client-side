@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import useAuth from '../../../../hooks/useAuth';
+import swal from 'sweetalert';
+import Order from '../../../../utils/Order';
 
 const MyOrders = () => {
     const [myOrder, setMyOrder] = useState([]);
-    const [cars, setCars] = useState([]);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -19,55 +14,39 @@ const MyOrders = () => {
             .then(data => {
                 setMyOrder(data);
             })
-    }, [user.email]);
+    }, [user.email, myOrder]);
 
-    /* useEffect(() => {
-        fetch(`http://localhost:8888/myOrder/${myOrder.carId}`)
-            .then(res => res.json())
-            .then(data => {
-                setCars(data);
-                console.log(data);
-            })
-    }, [myOrder]); */
-
-
+    //
+    const handleDeleteItem = (id) => {
+        swal({
+            title: "Are you sure you want to delete this order?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    // swal("Poof! Your imaginary file has been deleted!", {
+                    //     icon: "success",
+                    // });
+                    fetch(`http://localhost:8888/deleteOrder/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then({})
+                } else {
+                    // swal("Your imaginary file is safe!");
+                }
+            });
+    };
 
     return (
         <Box>
-            <Typography>Your Order</Typography>
+            <Typography>My Order</Typography>
             <hr />
             <Grid container spacing={3}>
                 {
-                    myOrder.map(order =>
-                        <Grid key={order._id} item xs={12} sm={6} md={4}>
-                            <TableContainer component={Paper}>
-                                <Table aria-label="simple table">
-                                    <TableBody>
-                                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell component="th" scope="row">Name: </TableCell>
-                                            <TableCell >{order.name}</TableCell>
-                                        </TableRow>
-                                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell component="th" scope="row">Email: </TableCell>
-                                            <TableCell >{order.email}</TableCell>
-                                        </TableRow>
-                                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell component="th" scope="row">Phone: </TableCell>
-                                            <TableCell >{order.phone}</TableCell>
-                                        </TableRow>
-                                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell component="th" scope="row">Address: </TableCell>
-                                            <TableCell>{order.address}</TableCell>
-                                        </TableRow>
-                                        <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                            <TableCell component="th" scope="row">Date: </TableCell>
-                                            <TableCell >{order.date}</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Grid>
-                    )
+                    myOrder.map(order => <Order key={order._id} order={order} handleDeleteItem={handleDeleteItem} />)
                 }
             </Grid>
         </Box>

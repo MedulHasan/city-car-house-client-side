@@ -2,20 +2,35 @@ import { Typography, Box, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { AiFillCar } from 'react-icons/ai';
 import { useHistory } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import { CircularProgress } from '@mui/material';
 import SingleCar from './SingleCar';
 
 const BestSellers = () => {
     const history = useHistory();
     const [bestCarSell, setBestCarSell] = useState([]);
+    const { isLoading, setIsLoading } = useAuth();
 
     useEffect(() => {
+        setIsLoading(true);
         fetch('http://localhost:8888/cars/bestCars/6')
             .then(res => res.json())
-            .then(data => setBestCarSell(data))
+            .then(data => {
+                setBestCarSell(data);
+                setIsLoading(false);
+            })
     }, []);
 
     const handleMoreDataLoad = () => {
         history.push('/exploreCar')
+    }
+
+    if (isLoading) {
+        return <Box style={{
+            marginTop: '10%',
+            width: '100%',
+            textAlign: 'center'
+        }}><CircularProgress /></Box>
     }
 
     return (

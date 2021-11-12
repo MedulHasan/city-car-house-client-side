@@ -50,10 +50,10 @@ const SingleCar = ({ bestCar }) => {
             <Grid container style={{
                 padding: '15px 12%',
             }}>
-                <Grid item xs={12} sm={5}>
+                <Grid item xs={12} md={5}>
                     <img width="400px" src={bestCar.carImage} alt="" />
                 </Grid>
-                <Grid item xs={12} sm={7}>
+                <Grid item xs={12} md={7}>
                     <Typography style={{ fontWeight: 900, fontSize: '28px' }}>{bestCar.carModel}</Typography>
                     <hr style={{ width: '50px', textAlign: 'left', marginLeft: '0px', height: '1px', background: '#000' }} />
                     <Grid container spacing={6}>
