@@ -69,7 +69,6 @@ const AddAProduct = () => {
     }
     const handleAddProductSubmit = (e) => {
         e.preventDefault();
-        // console.log(addCar);
         fetch('https://city-car-house.herokuapp.com/admin/addCar', {
             method: 'POST',
             headers: {
@@ -80,7 +79,9 @@ const AddAProduct = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.insertedId) {
+                    e.target.reset();
                     setAlertSuccessMessage(true);
+
                 } else {
                     setAlertErrorMessage(true)
                 }

@@ -46,16 +46,21 @@ const Order = ({ order, handleDeleteItem, handleStatus }) => {
                     </TableBody>
                 </Table>
                 <Box style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Button onClick={() => handleDeleteItem(order._id)} sx={{ color: 'red', m: 1, border: '1px solid' }}>Cancel Order</Button>
                     {
                         admin ? (
-                            <Button onClick={() => handleStatus(order._id)} sx={{ m: 1, border: '1px solid' }} disabled={order.status ? true : false}>
-                                {
-                                    order.status ? 'Approved' : 'Approve'
-                                }
-                            </Button>
+                            <>
+                                <Button onClick={() => handleDeleteItem(order._id)} sx={{ color: 'red', m: 1, border: '1px solid' }}>Cancel Order</Button>
+                                <Button onClick={() => handleStatus(order._id)} sx={{ m: 1, border: '1px solid' }} disabled={order.status ? true : false}>
+                                    {
+                                        order.status ? 'Approved' : 'Approve'
+                                    }
+                                </Button>
+                            </>
                         ) : (
-                            <Typography sx={{ mr: 3, padding: '5px', background: `${order.status ? '#18D2AF' : 'red'}`, color: '#fff', borderRadius: '5px' }}>{order.status || 'pending'}</Typography>
+                            <>
+                                <Button onClick={() => handleDeleteItem(order._id)} sx={{ color: 'red', m: 1, border: '1px solid' }} disabled={order.status === 'shipped' ? true : false}>Cancel Order</Button>
+                                <Typography sx={{ mr: 3, padding: '5px', background: `${order.status ? '#18D2AF' : 'red'}`, color: '#fff', borderRadius: '5px' }}>{order.status || 'pending'}</Typography>
+                            </>
                         )
                     }
                 </Box>

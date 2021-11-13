@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Box, TextField, Button } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import useAuth from '../../../hooks/useAuth';
 
 const styleTextField = {
@@ -10,6 +12,8 @@ const CarPurchaseInfo = ({ carDetails, setAlertSuccessMessage }) => {
     const { user } = useAuth();
     const initialInfo = { name: user.displayName, email: user.email, phone: '' }
     const [addOrder, setAddOrder] = useState(initialInfo);
+
+    const notify = () => toast.success("Place Order Successfully!");
 
     const handleCarInfo = (e) => {
         let newData = { ...addOrder };
@@ -69,9 +73,10 @@ const CarPurchaseInfo = ({ carDetails, setAlertSuccessMessage }) => {
                     <br />
                     <TextField style={styleTextField} onBlur={handleCarInfo} type="date" name="date" label="" variant="standard" required />
                     <br />
-                    <Button onClick={() => setAlertSuccessMessage(true)} sx={{ mt: 2 }} type="submit" variant="outlined">Place Order</Button>
+                    <Button onClick={notify} sx={{ mt: 2 }} type="submit" variant="outlined">Place Order</Button>
                 </form>
             </Box>
+            <ToastContainer />
         </Box>
     );
 };

@@ -41,7 +41,7 @@ const MyOrders = () => {
     };
 
     return (
-        <Box>
+        <Box sx={{ m: 2 }}>
             <Typography>My Order</Typography>
             <hr />
             <Grid container spacing={3}>

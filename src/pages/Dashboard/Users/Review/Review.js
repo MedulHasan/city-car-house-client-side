@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 import useAuth from '../../../../hooks/useAuth';
 
 const textField = {
@@ -8,6 +9,7 @@ const textField = {
 }
 
 const Review = () => {
+    const [alertSuccessMessage, setAlertSuccessMessage] = useState(false);
     const { user } = useAuth();
     const initialValue = { customerName: user.displayName };
     const [feedback, setFeedback] = useState(initialValue);
@@ -28,11 +30,31 @@ const Review = () => {
             body: JSON.stringify(feedback)
         })
             .then(res => res.json())
-            .then({})
+            .then((data) => {
+                e.target.reset();
+                setAlertSuccessMessage(true);
+            })
     }
     return (
-        <Box>
-            <Typography variant="h5" sx={{ mb: 5 }}>Give us your feedback about our website</Typography>
+        <Box sx={{ m: 2 }}>
+            <Typography variant="h5">Give us your feedback about our website</Typography>
+            <hr style={{ marginBottom: '40px' }} />
+            {alertSuccessMessage &&
+                <Alert
+                    severity="success"
+                    style={{ marginBottom: '20px' }}
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            onClick={() => setAlertSuccessMessage(false)}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    }
+                >
+                    <Typography>Review Post Successfully!</Typography>
+
+                </Alert>}
             <form onSubmit={handleSubmit}>
                 <TextField style={textField} id="outlined-basic" size="small" onBlur={handleFeedback} defaultValue={user.displayName} name="customerName" label="Your Name" variant="outlined" />
                 <br />
