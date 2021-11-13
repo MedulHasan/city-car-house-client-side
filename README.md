@@ -1,6 +1,6 @@
 # City car House
 
-Project Live site [https://city-car-house.web.app/](https://city-car-house.web.app/).
+Project Live site [https://city-car-house.web.app](https://city-car-house.web.app).
 
 ## What we have tried to do in this project
 - This project is a simple Car selling project.

@@ -70,8 +70,9 @@ const SingleCar = ({ bestCar }) => {
                     <Typography variant="h5" sx={{ fontWeight: 600, fontSize: '28px', color: '#FFCF00', }}>Price: $ {bestCar.price}</Typography>
                 </Box>
             </Box>
-            <Grid container style={{
+            <Grid container spacing={3} style={{
                 padding: '15px 12%',
+                alignItems: 'center',
             }}>
                 <Grid item xs={12} lg={5}>
                     <img width="400px" src={bestCar.carImage} alt="" />
