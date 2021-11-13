@@ -8,6 +8,7 @@ initializationAuthentication();
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [manageProduct, setManageProduct] = useState(false);
     const [admin, setAdmin] = useState(false);
     const [token, setToken] = useState('');
     const [authError, setAuthError] = useState('');
@@ -122,7 +123,9 @@ const useFirebase = () => {
         isLoading,
         authError,
         setAuthError,
-        signInWithGoogle
+        signInWithGoogle,
+        manageProduct,
+        setManageProduct
     }
 }
 

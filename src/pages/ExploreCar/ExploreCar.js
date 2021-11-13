@@ -6,7 +6,7 @@ import { Box } from '@mui/system';
 
 const ExploreCar = () => {
     const [exploreCars, setExploreCars] = useState([]);
-    const { isLoading, setIsLoading } = useAuth();
+    const { isLoading, setIsLoading, setManageProduct } = useAuth();
 
     useEffect(() => {
         setIsLoading(true);
@@ -15,6 +15,7 @@ const ExploreCar = () => {
             .then(data => {
                 setExploreCars(data);
                 setIsLoading(false);
+                setManageProduct(false);
             })
     }, [setIsLoading]);
 

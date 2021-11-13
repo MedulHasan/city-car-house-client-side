@@ -1,9 +1,35 @@
-import React from 'react';
+import { CircularProgress, Box } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
+import SingleCar from '../../../Home/BestSellers/SingleCar';
 
 const ManageProduct = () => {
+    const [exploreCars, setExploreCars] = useState([]);
+    const { isLoading, setIsLoading, setManageProduct } = useAuth();
+
+    // setIsLoading(true);
+    useEffect(() => {
+        fetch('http://localhost:8888/cars/bestCars/0')
+            .then(res => res.json())
+            .then(data => {
+                setExploreCars(data);
+                setIsLoading(false);
+                setManageProduct(true);
+            })
+    }, [setIsLoading, exploreCars, setManageProduct]);
+
+    if (isLoading) {
+        return <Box style={{
+            marginTop: '10%',
+            width: '100%',
+            textAlign: 'center'
+        }}><CircularProgress /></Box>
+    }
     return (
         <div>
-            Manage Product
+            {
+                exploreCars.map((bestCar) => <SingleCar key={bestCar._id} bestCar={bestCar} />)
+            }
         </div>
     );
 };

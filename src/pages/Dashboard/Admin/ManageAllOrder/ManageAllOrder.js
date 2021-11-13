@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import swal from 'sweetalert';
 import Order from '../../../../utils/Order';
+import useAuth from '../../../../hooks/useAuth';
 
 const ManageAllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
+    const { isLoading } = useAuth();
 
     useEffect(() => {
         fetch(`http://localhost:8888/allOrder`)
@@ -43,6 +45,13 @@ const ManageAllOrder = () => {
         })
     }
 
+    if (isLoading) {
+        return <Box style={{
+            marginTop: '10%',
+            width: '100%',
+            textAlign: 'center'
+        }}><CircularProgress /></Box>
+    }
     return (
         <Box>
             <Typography>All Orders</Typography>

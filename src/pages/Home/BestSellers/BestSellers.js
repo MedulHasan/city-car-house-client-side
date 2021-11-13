@@ -9,7 +9,7 @@ import SingleCar from './SingleCar';
 const BestSellers = () => {
     const history = useHistory();
     const [bestCarSell, setBestCarSell] = useState([]);
-    const { isLoading, setIsLoading } = useAuth();
+    const { isLoading, setIsLoading, setManageProduct } = useAuth();
 
     useEffect(() => {
         setIsLoading(true);
@@ -18,6 +18,7 @@ const BestSellers = () => {
             .then(data => {
                 setBestCarSell(data);
                 setIsLoading(false);
+                setManageProduct(false)
             })
     }, []);
 

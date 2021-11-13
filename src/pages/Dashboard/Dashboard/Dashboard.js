@@ -11,7 +11,7 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import MenuIcon from '@mui/icons-material/Menu';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import HomeIcon from '@mui/icons-material/Home';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import { AiFillDashboard } from 'react-icons/ai';
 import { RiAdminFill } from 'react-icons/ri';
 import { MdLibraryAdd } from 'react-icons/md';
@@ -43,12 +43,20 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
-    const { admin, logout } = useAuth();
+    const { admin, logout, isLoading } = useAuth();
     let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
+
+    if (isLoading) {
+        return <Box style={{
+            marginTop: '10%',
+            width: '100%',
+            textAlign: 'center'
+        }}><CircularProgress /></Box>
+    }
 
     const drawer = (
         <Box
@@ -186,7 +194,7 @@ function Dashboard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex', background: '#F4FDFB', height: '100%' }}>
+        <Box sx={{ display: 'flex', background: '#fff', height: '100%' }}>
             <MenuIcon
                 color="inherit"
                 aria-label="open drawer"

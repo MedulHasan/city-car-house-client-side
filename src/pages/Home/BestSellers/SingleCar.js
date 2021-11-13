@@ -8,6 +8,8 @@ import { IoMdClock } from 'react-icons/io';
 import { SiYamahamotorcorporation } from 'react-icons/si';
 import { AiFillCar } from 'react-icons/ai';
 import { useHistory } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+import swal from 'sweetalert';
 
 
 const spanItem = {
@@ -23,13 +25,34 @@ const innerGridStyle = {
 
 const SingleCar = ({ bestCar }) => {
     const history = useHistory();
+    const { manageProduct } = useAuth();
 
     const handleOrder = () => {
         history.push({
             pathname: '/carDetails',
             state: { from: bestCar }
         });
-    }
+    };
+
+    const handleDeleteItem = (id) => {
+        swal({
+            title: "Are you sure you want to delete this Car?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    fetch(`http://localhost:8888/deleteCar/${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(res => res.json())
+                        .then({})
+                } else {
+                }
+            });
+    };
+
     return (
         <Box>
             <Box style={{
@@ -100,31 +123,58 @@ const SingleCar = ({ bestCar }) => {
                             </Typography>
                         </Grid>
                     </Grid>
-                    <Button
-                        onClick={handleOrder}
-                        sx={{
-                            mt: 5,
-                            ml: 5,
-                            background: '#2CC0C7',
-                            '&:hover': {
-                                background: "#000",
-                            },
-                            color: '#fff',
-                            border: 'none',
-                            padding: 0,
-                            borderRadius: 0,
-                        }}
-                        variant="contained">
-                        <span style={{ padding: '10px 15px' }}>Order Now</span>
-                        <AiFillCar style={{
-                            fontSize: '28px',
-                            background: '#000',
-                            padding: '10px 15px'
-                        }} />
-                    </Button>
+                    {
+                        manageProduct ? (
+                            <Button
+                                onClick={() => handleDeleteItem(bestCar._id)}
+                                sx={{
+                                    mt: 5,
+                                    ml: 5,
+                                    background: '#2CC0C7',
+                                    '&:hover': {
+                                        background: "#000",
+                                    },
+                                    color: '#fff',
+                                    border: 'none',
+                                    padding: 0,
+                                    borderRadius: 0,
+                                }}
+                                variant="contained">
+                                <span style={{ padding: '10px 15px' }}>Delete Item</span>
+                                <AiFillCar style={{
+                                    fontSize: '28px',
+                                    background: '#000',
+                                    padding: '10px 15px'
+                                }} />
+                            </Button>
+                        ) : (
+                            <Button
+                                onClick={handleOrder}
+                                sx={{
+                                    mt: 5,
+                                    ml: 5,
+                                    background: '#2CC0C7',
+                                    '&:hover': {
+                                        background: "#000",
+                                    },
+                                    color: '#fff',
+                                    border: 'none',
+                                    padding: 0,
+                                    borderRadius: 0,
+                                }}
+                                variant="contained">
+                                <span style={{ padding: '10px 15px' }}>Order Now</span>
+                                <AiFillCar style={{
+                                    fontSize: '28px',
+                                    background: '#000',
+                                    padding: '10px 15px'
+                                }} />
+                            </Button>
+                        )
+                    }
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     );
 };
 
