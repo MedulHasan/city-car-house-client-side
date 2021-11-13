@@ -13,7 +13,7 @@ const BestSellers = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch('http://localhost:8888/cars/bestCars/6')
+        fetch('https://city-car-house.herokuapp.com/cars/bestCars/6')
             .then(res => res.json())
             .then(data => {
                 setBestCarSell(data);
@@ -36,7 +36,7 @@ const BestSellers = () => {
 
     return (
         <Box sx={{ pb: 5 }}>
-            <Box sx={{ mt: '100px', py: '50px', pl: '12%', width: '300px' }}>
+            <Box sx={{ mt: '40px', py: '50px', pl: '12%', width: '300px' }}>
                 <Typography variant="h5" sx={{ fontWeight: 900, fontSize: '34px' }}>BEST SELLERS</Typography>
                 <Typography variant="body1" sx={{ fontSize: '20px', color: '#969696' }}>Available models of electric cars</Typography>
                 <hr style={{ width: '100px', textAlign: 'left', marginLeft: '0px', height: '2px', background: '#000' }} />

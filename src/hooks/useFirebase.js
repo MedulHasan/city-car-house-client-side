@@ -87,9 +87,13 @@ const useFirebase = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:8888/users/${user.email}`)
+        setIsLoading(true)
+        fetch(`https://city-car-house.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin))
+            .then(data => {
+                setAdmin(data.admin);
+                setIsLoading(false)
+            })
     }, [user.email])
 
     const logout = () => {
@@ -101,7 +105,7 @@ const useFirebase = () => {
     };
 
     const saveUserDB = (email, displayName, method) => {
-        fetch('http://localhost:8888/users', {
+        fetch('https://city-car-house.herokuapp.com/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'

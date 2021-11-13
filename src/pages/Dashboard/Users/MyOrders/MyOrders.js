@@ -9,7 +9,7 @@ const MyOrders = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:8888/myOrder/${user.email}`)
+        fetch(`https://city-car-house.herokuapp.com/myOrder/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyOrder(data);
@@ -29,7 +29,7 @@ const MyOrders = () => {
                     // swal("Poof! Your imaginary file has been deleted!", {
                     //     icon: "success",
                     // });
-                    fetch(`http://localhost:8888/deleteOrder/${id}`, {
+                    fetch(`https://city-car-house.herokuapp.com/deleteOrder/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())

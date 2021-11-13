@@ -11,7 +11,7 @@ import PaymentsIcon from '@mui/icons-material/Payments';
 import MenuIcon from '@mui/icons-material/Menu';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, CircularProgress } from '@mui/material';
+import { Button, CircularProgress, Typography } from '@mui/material';
 import { AiFillDashboard } from 'react-icons/ai';
 import { RiAdminFill } from 'react-icons/ri';
 import { MdLibraryAdd } from 'react-icons/md';
@@ -42,21 +42,12 @@ const drawerWidth = 240;
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
     const { admin, logout, isLoading } = useAuth();
     let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
-    if (isLoading) {
-        return <Box style={{
-            marginTop: '10%',
-            width: '100%',
-            textAlign: 'center'
-        }}><CircularProgress /></Box>
-    }
 
     const drawer = (
         <Box
@@ -77,103 +68,98 @@ function Dashboard(props) {
                         <Button sx={{ color: '#fff' }}>Home</Button>
                     </ListItem>
                 </Link>
-                {/* <Link id="RouterNavLink" to={`${url}`} style={{
-                    color: '#fff',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center'
-                }}>
-                    <ListItem button>
-                        <AiFillDashboard style={{ fontSize: '25px' }} />
-                        <Button sx={{ color: '#fff' }}>Dashboard</Button>
-                    </ListItem>
-                </Link> */}
                 {
-                    admin &&
-                    <Box>
-                        <Link id="RouterNavLink" to={`${url}/manageAllOrders`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <SiManageiq style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Manage All Cars</Button>
-                            </ListItem>
-                        </Link>
-                        <Link id="RouterNavLink" to={`${url}/addAProduct`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <MdLibraryAdd style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Add a Car</Button>
-                            </ListItem>
-                        </Link>
-                        <Link id="RouterNavLink" to={`${url}/makeAdmin`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <RiAdminFill style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Make Admin</Button>
-                            </ListItem>
-                        </Link>
-                        <Link id="RouterNavLink" to={`${url}/manageProduct`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <GrProductHunt style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Manage Cars</Button>
-                            </ListItem>
-                        </Link>
-                    </Box>
-                }
-                {
-                    !admin &&
-                    <Box>
-                        <Link id="RouterNavLink" to={`${url}/payment`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <PaymentsIcon style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Payment</Button>
-                            </ListItem>
-                        </Link>
-                        <Link id="RouterNavLink" to={`${url}/myOrders`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <AddShoppingCartIcon style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>My Orders</Button>
-                            </ListItem>
-                        </Link>
-                        <Link id="RouterNavLink" to={`${url}/review`} style={{
-                            color: '#fff',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}>
-                            <ListItem button>
-                                <RateReviewIcon style={{ fontSize: '25px' }} />
-                                <Button sx={{ color: '#fff' }}>Review</Button>
-                            </ListItem>
-                        </Link>
-                    </Box>
+                    isLoading ? <CircularProgress /> : (
+                        <Box>
+                            {
+                                admin &&
+                                <Box>
+                                    <Link id="RouterNavLink" to={`${url}/manageAllOrders`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <SiManageiq style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Manage All Order</Button>
+                                        </ListItem>
+                                    </Link>
+                                    <Link id="RouterNavLink" to={`${url}/addAProduct`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <MdLibraryAdd style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Add a Car</Button>
+                                        </ListItem>
+                                    </Link>
+                                    <Link id="RouterNavLink" to={`${url}/makeAdmin`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <RiAdminFill style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Make Admin</Button>
+                                        </ListItem>
+                                    </Link>
+                                    <Link id="RouterNavLink" to={`${url}/manageProduct`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <GrProductHunt style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Manage Cars</Button>
+                                        </ListItem>
+                                    </Link>
+                                </Box>
+                            }
+                            {
+                                !admin &&
+                                <Box>
+                                    <Link id="RouterNavLink" to={`${url}/payment`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <PaymentsIcon style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Payment</Button>
+                                        </ListItem>
+                                    </Link>
+                                    <Link id="RouterNavLink" to={`${url}/myOrders`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <AddShoppingCartIcon style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>My Orders</Button>
+                                        </ListItem>
+                                    </Link>
+                                    <Link id="RouterNavLink" to={`${url}/review`} style={{
+                                        color: '#fff',
+                                        textDecoration: 'none',
+                                        display: 'flex',
+                                        alignItems: 'center'
+                                    }}>
+                                        <ListItem button>
+                                            <RateReviewIcon style={{ fontSize: '25px' }} />
+                                            <Button sx={{ color: '#fff' }}>Review</Button>
+                                        </ListItem>
+                                    </Link>
+                                </Box>
+                            }
+                        </Box>
+                    )
                 }
                 <Link onClick={logout} id="RouterNavLink" to={`/home`} style={{
                     marginTop: 'auto',
@@ -234,39 +220,43 @@ function Dashboard(props) {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
-            >
-                <Switch>
-                    <Route exact path={path}>
-                        {/* <DashboardHome /> */}
-                        <Redirect to={{
-                            pathname: `${path}/${admin ? 'addAProduct' : 'myOrders'}`
-                        }} />
-                    </Route>
-                    <AdminRoute path={`${path}/manageAllOrders`}>
-                        <ManageAllOrder />
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/addAProduct`}>
-                        <AddAProduct />
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/makeAdmin`}>
-                        <MakeAdmin />
-                    </AdminRoute>
-                    <AdminRoute path={`${path}/manageProduct`}>
-                        <ManageProduct />
-                    </AdminRoute>
-                    <PrivateRoute path={`${path}/payment`}>
-                        <Payment />
-                    </PrivateRoute>
-                    <PrivateRoute path={`${path}/myOrders`}>
-                        <MyOrders />
-                    </PrivateRoute>
-                    <PrivateRoute path={`${path}/review`}>
-                        <Review />
-                    </PrivateRoute>
-                </Switch>
+            <Box style={{ width: '100%' }}>
+                {admin && <Typography style={{ background: '#1976D2', fontSize: '24px', padding: '10px 20px', color: '#fff' }}>Admin Dashboard</Typography>}
+                {!admin && <Typography style={{ background: '#1976D2', fontSize: '24px', padding: '10px 20px', color: '#fff' }}>User Dashboard</Typography>}
+                <Box
+                    component="main"
+                // sx={{ m: 2 }}
+                // sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
+                >
+                    <Switch>
+                        <Route exact path={path}>
+                            <Redirect to={{
+                                pathname: `${path}/${admin ? 'addAProduct' : 'myOrders'}`
+                            }} />
+                        </Route>
+                        <AdminRoute path={`${path}/manageAllOrders`}>
+                            <ManageAllOrder />
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/addAProduct`}>
+                            <AddAProduct />
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/makeAdmin`}>
+                            <MakeAdmin />
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/manageProduct`}>
+                            <ManageProduct />
+                        </AdminRoute>
+                        <PrivateRoute path={`${path}/payment`}>
+                            <Payment />
+                        </PrivateRoute>
+                        <PrivateRoute path={`${path}/myOrders`}>
+                            <MyOrders />
+                        </PrivateRoute>
+                        <PrivateRoute path={`${path}/review`}>
+                            <Review />
+                        </PrivateRoute>
+                    </Switch>
+                </Box>
             </Box>
         </Box>
     );

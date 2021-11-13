@@ -6,7 +6,7 @@ const styleTextField = {
     marginBottom: '15px',
 }
 
-const CarPurchaseInfo = ({ carDetails }) => {
+const CarPurchaseInfo = ({ carDetails, setAlertSuccessMessage }) => {
     const { user } = useAuth();
     const initialInfo = { name: user.displayName, email: user.email, phone: '' }
     const [addOrder, setAddOrder] = useState(initialInfo);
@@ -21,7 +21,7 @@ const CarPurchaseInfo = ({ carDetails }) => {
 
     const handlePlaceOrderSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8888/customerOrder', {
+        fetch('https://city-car-house.herokuapp.com/customerOrder', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -69,7 +69,7 @@ const CarPurchaseInfo = ({ carDetails }) => {
                     <br />
                     <TextField style={styleTextField} onBlur={handleCarInfo} type="date" name="date" label="" variant="standard" required />
                     <br />
-                    <Button sx={{ mt: 2 }} type="submit" variant="outlined">Place Order</Button>
+                    <Button onClick={() => setAlertSuccessMessage(true)} sx={{ mt: 2 }} type="submit" variant="outlined">Place Order</Button>
                 </form>
             </Box>
         </Box>

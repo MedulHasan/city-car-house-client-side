@@ -15,7 +15,7 @@ const MakeAdmin = () => {
     const handleAdminSubmit = (e) => {
         e.preventDefault();
 
-        fetch('http://localhost:8888/users/admin', {
+        fetch('https://city-car-house.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${token}`,
@@ -36,7 +36,7 @@ const MakeAdmin = () => {
 
     };
     return (
-        <Box>
+        <Box sx={{ m: 2 }}>
             {alertSuccessMessage &&
                 <Alert
                     severity="success"
@@ -77,6 +77,8 @@ const MakeAdmin = () => {
                         <CloseIcon />
                     </IconButton>
                 </Alert>}
+            <Typography>Make an Admin</Typography>
+            <hr />
             <form onSubmit={handleAdminSubmit}>
                 <TextField style={{ width: '30%' }} onBlur={handleAdmin} type="email" label="Email" variant="standard" />
                 <br />

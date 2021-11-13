@@ -6,13 +6,15 @@ import useAuth from '../../../../hooks/useAuth';
 
 const ManageAllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
-    const { isLoading } = useAuth();
+    const { isLoading, setIsLoading } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:8888/allOrder`)
+        // setIsLoading(true)
+        fetch(`https://city-car-house.herokuapp.com/allOrder`)
             .then(res => res.json())
             .then(data => {
                 setAllOrder(data);
+                // setIsLoading(false)
             })
     }, [allOrder]);
 
@@ -25,7 +27,7 @@ const ManageAllOrder = () => {
         })
             .then((willDelete) => {
                 if (willDelete) {
-                    fetch(`http://localhost:8888/deleteOrder/${id}`, {
+                    fetch(`https://city-car-house.herokuapp.com/deleteOrder/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())
@@ -36,7 +38,7 @@ const ManageAllOrder = () => {
     };
 
     const handleStatus = (id) => {
-        fetch(`http://localhost:8888/status/${id}`, {
+        fetch(`https://city-car-house.herokuapp.com/status/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +55,7 @@ const ManageAllOrder = () => {
         }}><CircularProgress /></Box>
     }
     return (
-        <Box>
+        <Box sx={{ m: 2 }}>
             <Typography>All Orders</Typography>
             <hr />
             <Grid container spacing={3}>

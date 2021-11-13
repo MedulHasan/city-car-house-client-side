@@ -70,7 +70,7 @@ const AddAProduct = () => {
     const handleAddProductSubmit = (e) => {
         e.preventDefault();
         // console.log(addCar);
-        fetch('http://localhost:8888/admin/addCar', {
+        fetch('https://city-car-house.herokuapp.com/admin/addCar', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -90,50 +90,43 @@ const AddAProduct = () => {
 
     };
     return (
-        <Box sx={{ ml: '50px' }}>
+        <Box sx={{ mx: 2, mt: 2 }}>
+            <Typography >Add a New Car</Typography>
+            <hr />
             {alertSuccessMessage &&
                 <Alert
                     severity="success"
                     style={{ marginBottom: '20px' }}
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            onClick={() => setAlertSuccessMessage(false)}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    }
                 >
                     <Typography>Car Added Successfully!</Typography>
-                    <IconButton
-                        aria-label="close"
-                        onClick={() => setAlertSuccessMessage(false)}
-                        sx={{
-                            position: 'absolute',
-                            right: 30,
-                            top: 25,
-                            mr: 1,
-                            mt: 1
-                        }}
-                    >
-                        <CloseIcon />
-                    </IconButton>
+
                 </Alert>}
             {alertErrorMessage &&
                 <Alert
                     severity="error"
                     style={{ marginBottom: '20px' }}
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            onClick={() => setAlertErrorMessage(false)}
+                        >
+                            <CloseIcon />
+                        </IconButton>
+                    }
                 >
                     <Typography>Car Added Failed!</Typography>
-                    <IconButton
-                        aria-label="close"
-                        onClick={() => setAlertErrorMessage(false)}
-                        sx={{
-                            position: 'absolute',
-                            right: 30,
-                            top: 25,
-                            mr: 1,
-                            mt: 1
-                        }}
-                    >
-                        <CloseIcon />
-                    </IconButton>
                 </Alert>}
-            <Typography sx={{ textAlign: 'center' }} variant="h3">Add A New Car Here</Typography>
+
             <form onSubmit={handleAddProductSubmit}>
-                <Grid container style={{ height: '50vh' }} sx={{ ml: '100px', mt: '50px' }}>
+                <Grid container style={{ height: '50vh' }} sx={{ pl: '100px', mt: '50px' }}>
                     <Grid item xs={12} sm={6}>
                         <TextField style={styleTextField} value={selectCar} onBlur={handleCarInfo} onChange={handleChange} select type="text" name="carBrand" label="Car Brand" variant="standard" >
                             {carBrand.map((option) => (

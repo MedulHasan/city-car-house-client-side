@@ -20,7 +20,7 @@ const Review = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:8888/customerReview', {
+        fetch('https://city-car-house.herokuapp.com/customerReview', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

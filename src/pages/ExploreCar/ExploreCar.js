@@ -3,6 +3,7 @@ import SingleCar from '../Home/BestSellers/SingleCar';
 import { CircularProgress } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
 import { Box } from '@mui/system';
+import Footer from '../../Shared/Footer/Footer';
 
 const ExploreCar = () => {
     const [exploreCars, setExploreCars] = useState([]);
@@ -10,7 +11,7 @@ const ExploreCar = () => {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch('http://localhost:8888/cars/bestCars/0')
+        fetch('https://city-car-house.herokuapp.com/cars/bestCars/0')
             .then(res => res.json())
             .then(data => {
                 setExploreCars(data);
@@ -31,6 +32,7 @@ const ExploreCar = () => {
             {
                 exploreCars.map((bestCar) => <SingleCar key={bestCar._id} bestCar={bestCar} />)
             }
+            <Footer />
         </div>
     );
 };

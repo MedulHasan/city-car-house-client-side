@@ -14,7 +14,7 @@ const CustomerFeedback = () => {
     const [allFeedback, setAllFeedback] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:8888/customerReview')
+        fetch('https://city-car-house.herokuapp.com/customerReview')
             .then(res => res.json())
             .then(data => {
                 setAllFeedback(data);

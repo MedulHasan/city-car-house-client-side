@@ -10,6 +10,7 @@ import Login from './pages/Login/Login/Login';
 import PrivateRoute from './pages/Login/PrivateRoute/PrivateRoute';
 import Register from './pages/Login/Register/Register';
 import Navigation from './Shared/Navigation/Navigation';
+import ScrollToTop from './utils/ScrollToTop';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <AuthProvider>
         <AlertMessage>
           <BrowserRouter>
+            <ScrollToTop />
             <Switch>
               <Route exact path='/'>
                 <Redirect to={{

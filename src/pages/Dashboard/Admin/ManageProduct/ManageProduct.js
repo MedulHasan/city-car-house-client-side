@@ -7,9 +7,9 @@ const ManageProduct = () => {
     const [exploreCars, setExploreCars] = useState([]);
     const { isLoading, setIsLoading, setManageProduct } = useAuth();
 
-    // setIsLoading(true);
     useEffect(() => {
-        fetch('http://localhost:8888/cars/bestCars/0')
+        // setIsLoading(true);
+        fetch('https://city-car-house.herokuapp.com/cars/bestCars/0')
             .then(res => res.json())
             .then(data => {
                 setExploreCars(data);
