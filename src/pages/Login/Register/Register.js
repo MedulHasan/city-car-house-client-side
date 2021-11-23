@@ -3,13 +3,13 @@ import { Container, Grid, Typography, TextField, Button, CircularProgress } from
 // import login from '../../../images/login.png';
 import { NavLink, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-import { useAlert } from '../../../context/AlertMessage';
+// import { useAlert } from '../../../context/AlertMessage';
 
 const Register = () => {
     const history = useHistory()
     const [loginData, setLoginData] = useState({});
     const { registerUser, isLoading } = useAuth();
-    const { setAlertSuccessMessage } = useAlert();
+    // const { setAlertSuccessMessage } = useAlert();
 
     const handleOnChange = (e) => {
         let newData = { ...loginData };
@@ -20,7 +20,7 @@ const Register = () => {
         e.preventDefault();
 
         registerUser(loginData.email, loginData.password, loginData.name, history);
-        setAlertSuccessMessage(true);
+        // setAlertSuccessMessage(true);
     }
     return (
         <Container maxWidth="xl" sx={{ mt: 2 }}>

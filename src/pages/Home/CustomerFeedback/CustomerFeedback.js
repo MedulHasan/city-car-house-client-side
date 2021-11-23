@@ -36,11 +36,11 @@ const CustomerFeedback = () => {
                         }} className="mySwiper">
                             {
                                 allFeedback.map(singleFb =>
-                                    <Box key={singleFb._id}>
+                                    <React.Fragment key={singleFb._id}>
                                         <SwiperSlide style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', paddingBottom: '50px' }}>
                                             <Typography style={{ fontSize: '28px', fontWeight: 600, color: '#1DD2FF', marginTop: '20px' }}>{singleFb.carModel}</Typography>
                                             <Box>
-                                                <Rating name="read-only" value={singleFb.ratting} readOnly />
+                                                <Rating name="read-only" value={parseInt(singleFb.ratting)} readOnly />
                                             </Box>
                                             <Typography>{singleFb.feedback}</Typography>
                                             <Box sx={{ mt: 5 }} style={{ display: 'flex', alignItems: 'center' }}>
@@ -48,7 +48,7 @@ const CustomerFeedback = () => {
                                                 <Typography style={{ fontSize: '20px', fontWeight: 600, color: '#1DD2FF' }}>{singleFb.customerName}</Typography>
                                             </Box>
                                         </SwiperSlide>
-                                    </Box>
+                                    </React.Fragment>
                                 )
                             }
                         </Swiper>

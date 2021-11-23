@@ -1,7 +1,7 @@
 import { Alert, Box, Button, Grid, IconButton, MenuItem, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
-import useAuth from '../../../../hooks/useAuth';
+import { v4 as uuidv4 } from 'uuid';
 
 const styleTextField = {
     width: '30%',
@@ -131,7 +131,7 @@ const AddAProduct = () => {
                     <Grid item xs={12} sm={6}>
                         <TextField style={styleTextField} value={selectCar} onBlur={handleCarInfo} onChange={handleChange} select type="text" name="carBrand" label="Car Brand" variant="standard" >
                             {carBrand.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
+                                <MenuItem key={uuidv4()} value={option.value}>
                                     {option.label}
                                 </MenuItem>
                             ))}

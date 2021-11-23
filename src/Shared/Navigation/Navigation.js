@@ -22,17 +22,17 @@ const Navigation = () => {
             CITY-CAR-HOUSE
           </Typography>
           <Box>
-            <Link to="/" style={navigationBar}><Button color="inherit" >Home</Button></Link>
-            <Link to="/exploreCar" style={navigationBar}><Button color="inherit" >Explore Car</Button></Link>
+            <Link id="RouterNavLink" to="/" style={navigationBar}><Button color="inherit" >Home</Button></Link>
+            <Link id="RouterNavLink" to="/exploreCar" style={navigationBar}><Button color="inherit" >Explore Car</Button></Link>
             {
               user.email ? (
-                <NavLink to="/" style={navigationBar}>
-                  <Link to="/dashboard" style={navigationBar}><Button color="inherit" >Dashboard</Button></Link>
+                <span id="RouterNavLink" style={navigationBar}>
+                  <Link id="RouterNavLink" to="/dashboard" style={navigationBar}><Button color="inherit" >Dashboard</Button></Link>
                   <Button onClick={logout} style={navigationBar} color="inherit">Logout</Button>
                   <Button style={navigationBar} color="inherit">{user.displayName}</Button>
-                </NavLink>
+                </span>
               ) : (
-                <NavLink to="/login" style={navigationBar}>
+                <NavLink id="RouterNavLink" to="/login" style={navigationBar}>
                   <Button color="inherit">Login</Button>
                 </NavLink>
               )

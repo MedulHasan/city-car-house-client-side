@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Box, Grid, Alert, IconButton } from '@mui/material';
+import { Typography, Box, Grid, Alert, IconButton, CircularProgress } from '@mui/material';
 import Navigation from '../../../Shared/Navigation/Navigation';
 import banner2 from '../../../image/banner/banner2.jpg';
 import CarInfo from '../CarInfo/CarInfo';
@@ -7,6 +7,7 @@ import CarPurchaseInfo from '../CarPurchaseInfo/CarPurchaseInfo';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLocation } from 'react-router';
 import Footer from '../../../Shared/Footer/Footer';
+import useAuth from '../../../hooks/useAuth';
 
 const bannerImgSty = {
     width: "100%",
@@ -27,6 +28,9 @@ const bannerTextStyle = {
 const CarDetails = () => {
     const [alertSuccessMessage, setAlertSuccessMessage] = useState(false);
     const location = useLocation();
+    const { isLoading } = useAuth();
+
+    // if (isLoading) { return <CircularProgress /> }
     return (
         <Box>
             <Navigation />

@@ -54,14 +54,14 @@ const Footer = () => {
                 </Grid>
                 <Grid item xs={12} md={6} style={{ background: '#E22937', color: '#fff', padding: '50px 100px' }} >
                     <Typography sx={{ mb: 2 }}>Send A Message</Typography>
-                    <form onSubmit="">
+                    <form>
                         <TextField style={textField} id="outlined-basic" size="small" name="customerName" label="Your Name" variant="outlined" />
                         <br />
                         <TextField style={textField} id="outlined-basic" size="small" name="carModel" label="Your Email" variant="outlined" />
                         <br />
                         <TextField style={textField} id="outlined-basic" size="small" name="feedback" label="Your Message" variant="outlined" multiline rows={4} />
                         <br />
-                        <Button variant="contained">Submit</Button>
+                        <Button type="submit" variant="contained">Submit</Button>
                     </form>
                 </Grid>
             </Grid>

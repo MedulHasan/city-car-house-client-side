@@ -16,37 +16,38 @@ function App() {
   return (
     <div className="App">
       <AuthProvider>
-        <AlertMessage>
-          <BrowserRouter>
-            <ScrollToTop />
-            <Switch>
-              <Route exact path='/'>
-                <Redirect to={{
+        {/* <AlertMessage> */}
+        <BrowserRouter>
+          <ScrollToTop />
+          <Switch>
+            <Route exact path='/'>
+              {/* <Redirect to={{
                   pathname: '/home'
-                }} />
-              </Route>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/exploreCar">
-                <Navigation />
-                <ExploreCar />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <PrivateRoute path="/dashboard">
-                <Dashboard />
-              </PrivateRoute>
-              <PrivateRoute path="/carDetails">
-                <CarDetails />
-              </PrivateRoute>
-            </Switch>
-          </BrowserRouter>
-        </AlertMessage>
+                }} /> */}
+              <Home />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/exploreCar">
+              <Navigation />
+              <ExploreCar />
+            </Route>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <PrivateRoute path="/dashboard">
+              <Dashboard />
+            </PrivateRoute>
+            <PrivateRoute path="/carDetails">
+              <CarDetails />
+            </PrivateRoute>
+          </Switch>
+        </BrowserRouter>
+        {/* </AlertMessage> */}
       </AuthProvider>
     </div>
   );

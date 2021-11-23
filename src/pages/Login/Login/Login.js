@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography, TextField, Button, CircularProgress }
 // import login from '../../../images/login.png';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
-import { useAlert } from '../../../context/AlertMessage';
+// import { useAlert } from '../../../context/AlertMessage';
 
 const Login = () => {
     const location = useLocation();
@@ -11,7 +11,7 @@ const Login = () => {
     const [loginData, setLoginData] = useState({});
     const { loginUser, isLoading, authError, signInWithGoogle } = useAuth();
     const [error, setError] = useState({});
-    const { setAlertSuccessMessage } = useAlert();
+    // const { setAlertSuccessMessage } = useAlert();
 
     const handleOnChange = (e) => {
         let newData = { ...loginData };
@@ -38,12 +38,12 @@ const Login = () => {
         }
         e.preventDefault();
         loginUser(loginData.email, loginData.password, location, history);
-        setAlertSuccessMessage(true);
+        // setAlertSuccessMessage(true);
     };
 
     const handleGoogleLogin = () => {
         signInWithGoogle(location, history);
-        setAlertSuccessMessage(true);
+        // setAlertSuccessMessage(true);
     }
 
     return (
