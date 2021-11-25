@@ -1,0 +1,19 @@
+.card-box {
+    width: 350px;
+}
+.card-element {
+    border: 1px solid;
+    padding: 7px 10px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+}
+.expire-card {
+    display: flex;
+    justify-content: space-between;
+}
+.card-exp {
+    width: 150px;
+    border: 1px solid;
+    padding: 7px 10px;
+    border-radius: 7px;
+}

@@ -19,6 +19,7 @@ const PrivateRoute = ({ children, ...rest }) => {
                 });
         } else {
             setUser({});
+            setLoading(false);
         }
     }, [userEmail]);
     return (
