@@ -21,7 +21,7 @@ const Payment = () => {
         fetch(`https://city-car-house.herokuapp.com/payment/${carId}`)
             .then((res) => res.json())
             .then((data) => setCarInfo(data));
-    }, []);
+    }, [carId]);
     return (
         <Box sx={{ m: 5 }}>
             <div>

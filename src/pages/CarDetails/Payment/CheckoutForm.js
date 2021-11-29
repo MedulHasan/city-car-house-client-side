@@ -14,15 +14,17 @@ import { CircularProgress } from "@mui/material";
 const CheckoutForm = ({ carInfo }) => {
     const { user } = useAuth();
     const { price } = carInfo;
+
     const stripe = useStripe();
     const elements = useElements();
+
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [clientSecret, setClientSecret] = useState("");
     const [processing, setProcessing] = useState(false);
 
     useEffect(() => {
-        fetch("http://localhost:8888/create-payment-intent", {
+        fetch("https://city-car-house.herokuapp.com/create-payment-intents", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
@@ -32,6 +34,7 @@ const CheckoutForm = ({ carInfo }) => {
             .then((res) => res.json())
             .then((data) => setClientSecret(data.clientSecret));
     }, [price]);
+    console.log(clientSecret);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,7 +42,11 @@ const CheckoutForm = ({ carInfo }) => {
             return;
         }
 
-        const card = elements.getElement(CardElement);
+        const card = elements.getElement(
+            CardNumberElement,
+            CardExpiryElement,
+            CardCvcElement
+        );
 
         if (card == null) {
             return;
@@ -55,11 +62,10 @@ const CheckoutForm = ({ carInfo }) => {
             setSuccess("");
         } else {
             setError("");
-            console.log(paymentMethod);
         }
 
         const { paymentIntent, intentError } = await stripe.confirmCardPayment(
-            "{PAYMENT_INTENT_CLIENT_SECRET}",
+            clientSecret,
             {
                 payment_method: {
                     card: card,
@@ -78,13 +84,14 @@ const CheckoutForm = ({ carInfo }) => {
             setError("");
             setSuccess("Your payment process successfully");
             setProcessing(false);
+            console.log(paymentIntent);
         }
     };
     return (
         <div>
             <form onSubmit={handleSubmit} className='card-box'>
                 <div className='card-element'>
-                    <CardElement
+                    <CardNumberElement
                         options={{
                             style: {
                                 base: {
@@ -101,7 +108,7 @@ const CheckoutForm = ({ carInfo }) => {
                         }}
                     />
                 </div>
-                {/* <div className='expire-card'>
+                <div className='expire-card'>
                     <div className='card-exp'>
                         <CardExpiryElement
                             options={{
@@ -138,7 +145,7 @@ const CheckoutForm = ({ carInfo }) => {
                             }}
                         />
                     </div>
-                </div> */}
+                </div>
 
                 {processing ? (
                     <CircularProgress />
